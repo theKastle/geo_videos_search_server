@@ -1,0 +1,34 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "mongodb": "mongodb://lqt:secretpassword123@ds119323.mlab.com:19323/restaff_videos",
+  "authentication": {
+    "secret": "f62634994a7eada03a11b103362b423573b276ccadd1fbb70fccb9892ebb61ba1f96cb1065203af1443b2eb5b3805d14bdbd4260cf1b171ad2e28c8c84a5d49f536b5144ff2c289de8881cf545b7ee6754cc66bb5c1b4f8da493b2b8144428f80918833a749e1167ef2a287955730d61d773817535a6ee68bde42aac4eabf56a122e8bdc75746457e88d9699cc5c485f5893b1e649261e383f957a2195263d87a55f4b75f914eecc2b7c75462d390f106c99f3b6ee830764943a437886743a867302f0dfef0a85008e1c019a7367bbc8019f440f149dfebecce2419a2793706410e3472df60cb35739bfecb267179557836c16b6b08acc3ca66422e9ec422684",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  }
+}
