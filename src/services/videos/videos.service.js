@@ -1,15 +1,14 @@
 // Initializes the `videos` service on path `/videos`
-const createService = require('feathers-mongoose');
-const createModel = require('../../models/videos.model');
+const createService = require('./videos.class.js');
 const hooks = require('./videos.hooks');
 
 module.exports = function (app) {
-  const Model = createModel(app);
+  
   const paginate = app.get('paginate');
 
   const options = {
-    Model,
-    paginate
+    paginate,
+    apiKey: 'AIzaSyCbzWS8xXh19pTwfdfAQt4q9josjaoHW_A'
   };
 
   // Initialize our service with any options it requires
