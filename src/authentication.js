@@ -2,8 +2,7 @@ const authentication = require('@feathersjs/authentication');
 const jwt = require('@feathersjs/authentication-jwt');
 const local = require('@feathersjs/authentication-local');
 
-
-module.exports = function (app) {
+module.exports = function(app) {
   const config = app.get('authentication');
 
   // Set up authentication with the secret
@@ -17,11 +16,15 @@ module.exports = function (app) {
   app.service('authentication').hooks({
     before: {
       create: [
-        authentication.hooks.authenticate(config.strategies)
+        authentication.hooks.authenticate(config.strategies),
+        context => {
+          context.params.payload = context.params.payload || {};
+          Object.assign(context.params.payload, {
+            fullname: context.params.user.fullname || ''
+          });
+        }
       ],
-      remove: [
-        authentication.hooks.authenticate('jwt')
-      ]
+      remove: [authentication.hooks.authenticate('jwt')]
     }
   });
 };
